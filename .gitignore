@@ -1,0 +1,13 @@
+# Ignore secrets
+*.txt
+.env
+
+# Ignore large spatial data
+*.shp
+*.dbf
+*.shx
+*.prj
+*.cpg
+*.zip
+data/
+berlin-260208-free.shp/
