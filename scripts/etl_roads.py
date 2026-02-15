@@ -1,25 +1,26 @@
+from pathlib import Path
 import geopandas as gpd
 from sqlalchemy import create_engine
 
-# Database connection
-engine = create_engine(
-    "postgresql://postgres:chob2chob@localhost:5432/city_mobility"
-)
+# ---- Paths ----
+BASE_PATH = Path("data/raw")
+ROAD_FILE = BASE_PATH / "gis_osm_roads_free_1.shp"  # replace with your shapefile name
 
-# Load shapefile
-gdf = gpd.read_file(
-    "data/raw/gis_osm_roads_free_1.shp"
-)
+# ---- Database connection ----
+# Change username/password/host/dbname if needed
+DB_USER = "postgres"
+DB_PASSWORD = "chob2chob"  # your password
+DB_HOST = "localhost"
+DB_PORT = "5432"
+DB_NAME = "spatial_etl"
 
-# Convert to WGS84 (standard GPS coordinate system)
-gdf = gdf.to_crs(epsg=4326)
+engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
-# Save to PostGIS
-gdf.to_postgis(
-    name="roads",
-    con=engine,
-    if_exists="replace",
-    index=False
-)
+# ---- Load and write to PostGIS ----
+print("Loading road shapefile...")
+gdf = gpd.read_file(ROAD_FILE)
 
-print("Road data loaded successfully.")
+print("Writing to PostGIS...")
+gdf.to_postgis("roads", engine, if_exists="replace", index=False)
+
+print("Done! Table 'roads' should now exist in your database.")

@@ -1,137 +1,91 @@
-# City Mobility Spatial ETL Pipeline
-
-A spatial data engineering project that builds an ETL pipeline to ingest, transform, and store urban mobility data using Python and PostGIS.
+# Spatial City Mobility Analysis – Berlin
 
 ## Project Overview
+This project analyzes the relationship between bike-sharing stations, bike-lane infrastructure, traffic sensors, and public transport stops in central Berlin.  
+The goal is to identify stations that lack safe bike-lane access and highlight priority areas for infrastructure improvements.
 
-This project demonstrates a geospatial data pipeline that:
+## Objectives
+- Integrate multiple urban mobility datasets
+- Identify bike stations without nearby bike-lane coverage
+- Visualize infrastructure gaps in a professional map
+- Generate planning insights from spatial analysis
 
-- Extracts open spatial datasets (roads and bike stations)
-- Transforms them using GeoPandas
-- Loads them into a PostGIS-enabled PostgreSQL database
-- Performs spatial analysis using SQL
+## Data Sources
+- OpenStreetMap (OSM) bike lanes and road network
+- Bike-sharing station locations
+- Traffic sensor dataset (Berlin)
+- GTFS public transport stops
 
-The goal is to simulate a real-world spatial data engineering workflow for urban mobility analysis.
+## Methods
+1. Load and clean spatial datasets
+2. Reproject all layers to a common coordinate system
+3. Create a buffer around bike lanes
+4. Perform spatial join with bike stations
+5. Identify stations outside bike-lane coverage
+6. Visualize results in a professional cartographic layout
 
----
+## Key Metrics
+- Total bike stations: 2074
+- Stations within bike-lane coverage: 1665
+- Stations without lane access: 409
+- Coverage rate: 80.28%
 
-## Tech Stack
+## Key Insights
+- A significant number of bike stations are outside direct bike-lane coverage.
+- Several uncovered stations are located in dense central areas.
+- Some uncovered stations are near public transport stops, indicating opportunities for multimodal improvements.
 
+## Tools & Technologies
 - Python
 - GeoPandas
-- PostgreSQL
-- PostGIS
-- SQLAlchemy
-- Conda environment
-
----
+- Pandas
+- Matplotlib
+- Contextily
+- Shapely
 
 ## Project Structure
-
-```
-spatial-city-mobility-et
+spatial-city-mobility/
 │
-├── data
-│   ├── raw
-│   └── processed
+├── data/
+│   ├── raw/
+│   └── processed/
 │
-├── scripts
-│   ├── etl_roads.py
-│   ├── etl_bike_stations.py
-│   └── run_pipeline.py
+├── notebooks/
+│   └── spatial_mobility_analysis.ipynb
 │
-├── notebooks
-├── sql
-├── environment.yml
+├── outputs/
+│   ├── berlin_mitte_portfolio_map.png
+│   └── berlin_mitte_portfolio_map.pdf
+│
 └── README.md
-```
 
----
+Output
+
+A professional map highlighting:
+
+- Bike lanes
+
+- Bike stations
+
+- Stations without lane access
+
+- Traffic sensors
+
+- Public transport stops
 
 ## Data Sources
 
-- OpenStreetMap road network (via Geofabrik)
-- Bike sharing station data (Berlin open data)
+- OpenStreetMap (bike lanes and road network)  
+  https://www.openstreetmap.org/
 
----
+- Berlin traffic sensor dataset  
+  https://daten.berlin.de/datensaetze/verkehrsdetektion-berlin
 
-## Setup Instructions
+- GTFS public transport data (Berlin)  
+  https://www.vbb.de/
 
-### 1. Clone the repository
 
-```bash
-git clone <your-repo-url>
-cd spatial-city-mobility-et
-```
+Author
 
-### 2. Create conda environment
-
-```bash
-conda env create -f environment.yml
-conda activate spatial-etl
-```
-
-### 3. Set up PostgreSQL + PostGIS
-
-Create a database named:
-
-```
-city_mobility
-```
-
-Enable PostGIS:
-
-```sql
-CREATE EXTENSION postgis;
-```
-
----
-
-## Run the ETL Pipeline
-
-```bash
-python scripts/run_pipeline.py
-```
-
-This will:
-
-1. Load road data into PostGIS
-2. Load bike station data into PostGIS
-
----
-
-## Example Spatial Query
-
-Count bike stations near roads:
-
-```sql
-SELECT
-    COUNT(*) AS stations_near_roads
-FROM bike_stations b
-JOIN roads r
-ON ST_DWithin(b.geometry, r.geometry, 0.0005);
-```
-
----
-
-## Key Skills Demonstrated
-
-- Spatial ETL pipeline design
-- Geospatial data transformation
-- PostGIS database integration
-- Spatial SQL queries
-- Python data engineering workflows
-
----
-
-## Future Improvements
-
-- Add automated scheduling (cron or Airflow)
-- Include additional mobility datasets
-- Build API or dashboard for visualization
-## Data Source
-Download Berlin OSM data from:
-https://download.geofabrik.de/europe/germany/berlin.html
-
-Extract the shapefiles into:
-data/raw/
+Pattarin Thunyapar
+MSc Data Analytics
