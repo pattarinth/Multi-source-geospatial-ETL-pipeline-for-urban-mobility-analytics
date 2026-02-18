@@ -83,6 +83,9 @@ A professional map highlighting:
 
 - GTFS public transport data (Berlin)  
   https://www.vbb.de/
+  
+- Nextbike bike-sharing station dataset (Berlin)  
+  https://github.com/MaxHalford/bike-sharing-history/blob/main/data/stations/berlin/nextbike.geojson
 
 
 Author
