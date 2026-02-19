@@ -23,6 +23,7 @@ The goal is to identify stations that lack safe bike-lane access and highlight p
 4. Perform spatial join with bike stations
 5. Identify stations outside bike-lane coverage
 6. Visualize results in a professional cartographic layout
+7. Pipeline designed for automated and scheduled execution (validated locally)
 
 ## Key Metrics
 - Total bike stations: 2074
