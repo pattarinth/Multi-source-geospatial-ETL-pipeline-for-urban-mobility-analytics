@@ -54,6 +54,8 @@ The workflow demonstrates how spatial data pipelines can support **urban mobilit
 ---
 
 ## Repository Structure
+
+```
 Multi-source-geospatial-ETL-pipeline-for-urban-mobility-analytics
 │
 ├── notebooks/
@@ -72,8 +74,8 @@ Multi-source-geospatial-ETL-pipeline-for-urban-mobility-analytics
 │ └── raw/ (datasets not included in repo)
 │
 └── README.md
+```
 
----
 
 ## Technologies Used
 
