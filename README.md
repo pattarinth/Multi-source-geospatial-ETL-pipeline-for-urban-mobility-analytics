@@ -1,6 +1,6 @@
 # Multi-source Geospatial ETL Pipeline for Urban Mobility Analytics
 
-![Berlin Mobility Analysis](notebooks/berlin_mitte_portfolio_map.png)
+![Berlin Mobility Analysis](output/berlin_mitte_mobility_map.png)
 
 ## Project Overview
 
